@@ -1,3 +1,20 @@
+<script setup lang="ts">
+	import { computed, ref } from 'vue';
+	import { useRouter } from 'vue-router';
+
+	const router = useRouter();
+
+	const rawNoteName = ref('');
+
+	const notePath = computed(() =>
+		rawNoteName.value.toLowerCase().replace(/\s+/g, '-')
+	);
+
+	function goToNotePage() {
+		return router.push(`/${notePath.value}`);
+	}
+</script>
+
 <template>
 	<div class="w-content">
 		<h1>shyNotes</h1>
@@ -8,16 +25,17 @@
 			<p>This is shyNotes.</p>
 		</div>
 
-		<div class="w-input">
+		<form class="w-input" @submit.prevent="goToNotePage()">
 			<input
 				type="text"
 				name="noteName"
 				id="noteNameInput"
 				placeholder="Name your note..."
+				v-model.trim="rawNoteName"
 				required
 			/>
-			<button>Go!</button>
-		</div>
+			<button type="submit">Go!</button>
+		</form>
 	</div>
 </template>
 
