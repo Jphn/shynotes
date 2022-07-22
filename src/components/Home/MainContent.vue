@@ -11,7 +11,10 @@
 	);
 
 	function goToNotePage() {
-		return router.push(`/${notePath.value}`);
+		return router.push({
+			name: 'note',
+			params: { note: notePath.value },
+		});
 	}
 </script>
 
