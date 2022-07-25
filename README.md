@@ -1,6 +1,23 @@
+<img src="https://raw.githubusercontent.com/Jphn/beacademy-devstart-frontend-myportfolio/main/assets/img/dna-svgrepo-com.svg" align="right" width="60"/>
+
 # shy-notes
 
-This template should help get you started developing with Vue 3 in Vite.
+ShyNotes is a simple web app like [protected text](https://www.protectedtext.com/), and [dontpad](http://dontpad.com/).
+
+## Project Setup
+
+```sh
+# Install all dependencies.
+yarn install
+
+# Compile and Hot-Reload for Development.
+yarn dev
+# OR
+# Type-Check, Compile and Minify for Production.
+yarn build
+
+# Or you can use NPM.
+```
 
 ## Recommended IDE Setup
 
@@ -16,31 +33,3 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
     1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
     2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
