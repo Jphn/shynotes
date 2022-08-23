@@ -1,10 +1,16 @@
 <script setup lang="ts">
+	import { useNoteStore } from '@/stores/note';
+	import { useRoute } from 'vue-router';
+
+	const route = useRoute();
+	const noteStore = useNoteStore();
+
 	const actions = {
-		save: () => 'save',
-		delete: () => 'save',
-		share: () => 'save',
-		download: () => 'save',
-		about: () => 'save',
+		save: async () => await noteStore.saveNote(route.params.note),
+		delete: () => console.log('delete'),
+		share: () => console.log('share'),
+		download: () => console.log('download'),
+		about: () => console.log('about'),
 	};
 </script>
 
