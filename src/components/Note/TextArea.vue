@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { useNoteStore } from '@/stores/note';
-	import { onMounted, ref } from 'vue';
+	import { onMounted } from 'vue';
 	import { useRoute } from 'vue-router';
 
 	const route = useRoute();
