@@ -13,7 +13,9 @@
 
 			router.push({ name: 'home' });
 		},
-		share: () => console.log('share'),
+		share: () => {
+			navigator.clipboard.writeText(window.location.href);
+		},
 		download: () => console.log('download'),
 		about: () => console.log('about'),
 	};
