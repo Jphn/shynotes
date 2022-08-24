@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-const url = 'http://localhost:3030/notes/';
+const url = 'https://shynotes-api.deno.dev/notes/';
 
 export const useNoteStore = defineStore('note', () => {
 	let isNew = true;
 
 	const content = ref('');
 
-	async function getNote(noteName: string | string[]) {
+	async function getNote(noteName: string) {
 		let response = await fetch(url + noteName);
 
 		content.value = '';
@@ -22,7 +22,7 @@ export const useNoteStore = defineStore('note', () => {
 		content.value = json.content;
 	}
 
-	async function saveNote(noteName: string | string[]) {
+	async function saveNote(noteName: string) {
 		let postOptions = {
 			method: 'POST',
 			headers: {
@@ -51,8 +51,16 @@ export const useNoteStore = defineStore('note', () => {
 			isNew ? postOptions : putOptions
 		);
 
-		console.log(response.status);
+		isNew = false;
+
+		console.log(response.status); // FIXME - Debug only.
 	}
 
-	return { content, getNote, saveNote };
+	async function deleteNote(noteName: string) {
+		let response = await fetch(url + noteName, { method: 'DELETE' });
+
+		console.log(response.status); // FIXME - Debug only.
+	}
+
+	return { content, getNote, saveNote, deleteNote };
 });

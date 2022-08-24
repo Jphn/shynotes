@@ -8,7 +8,7 @@
 	const noteStore = useNoteStore();
 
 	onMounted(async () => {
-		await noteStore.getNote(route.params.note);
+		await noteStore.getNote(route.params.note.toString());
 	});
 </script>
 
