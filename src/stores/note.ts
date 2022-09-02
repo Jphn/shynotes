@@ -13,7 +13,7 @@ export const useNoteStore = defineStore('note', () => {
 
 		content.value = '';
 
-		if (response.status == 404) return;
+		if (response.status == 204) return;
 
 		isNew = false;
 
