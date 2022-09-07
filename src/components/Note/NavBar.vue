@@ -1,10 +1,13 @@
 <script setup lang="ts">
 	import { useNoteStore } from '@/stores/note';
+	import { ref } from 'vue';
 	import { useRoute, useRouter } from 'vue-router';
 
 	const route = useRoute();
 	const router = useRouter();
 	const noteStore = useNoteStore();
+
+	const menuIsOpen = ref(false);
 
 	const actions = {
 		save: async () => await noteStore.saveNote(route.params.note.toString()),
@@ -24,7 +27,7 @@
 <template>
 	<header>
 		<nav>
-			<ul>
+			<ul :class="{ open: menuIsOpen }">
 				<li><button @click="actions.save()">Save</button></li>
 				<li><button @click="actions.delete()">Delete</button></li>
 				<li><button @click="actions.share()">Share</button></li>
@@ -33,6 +36,11 @@
 			</ul>
 
 			<router-link :to="{ name: 'home' }">shyNotes</router-link>
+
+			<i
+				@click="() => (menuIsOpen = !menuIsOpen)"
+				:class="{ open: menuIsOpen }"
+			></i>
 		</nav>
 	</header>
 </template>
@@ -88,13 +96,70 @@
 		color: var(--darker);
 	}
 
-	@media screen and (max-width: 580px) {
+	i {
+		display: none;
+	}
+
+	@media screen and (max-width: 680px) {
+		i {
+			display: block;
+
+			cursor: pointer;
+
+			background-image: url('@/assets/images/menu-lined.svg');
+			background-repeat: no-repeat;
+
+			width: 5rem;
+			height: 5rem;
+		}
+
+		i.open {
+			z-index: 1000;
+
+			background-image: url('@/assets/images/x-mark-lined.svg');
+			background-repeat: no-repeat;
+		}
+
 		nav {
-			justify-content: center;
+			justify-content: space-between;
 		}
 
 		ul {
-			display: none;
+			z-index: 1000;
+			visibility: hidden;
+			position: fixed;
+
+			flex-direction: column;
+			justify-content: center;
+			gap: 4rem;
+			width: 65vw;
+
+			background-color: var(--middle);
+
+			top: 0;
+			right: -100vw;
+			bottom: 0;
+
+			transition: all 500ms ease-in-out;
+		}
+
+		ul.open {
+			visibility: visible;
+
+			right: 0;
+
+			transition: all 700ms ease-in-out;
+		}
+
+		button,
+		li {
+			height: fit-content;
+
+			width: 100%;
+		}
+
+		button {
+			font-size: 3rem;
 		}
 	}
 </style>

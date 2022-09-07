@@ -1,13 +1,13 @@
 <script setup lang="ts">
 	import { useNoteStore } from '@/stores/note';
-	import { onMounted } from 'vue';
+	import { onBeforeMount } from 'vue';
 	import { useRoute } from 'vue-router';
 
 	const route = useRoute();
 
 	const noteStore = useNoteStore();
 
-	onMounted(async () => {
+	onBeforeMount(async () => {
 		await noteStore.getNote(route.params.note.toString());
 	});
 </script>
